@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: todoapp-pv-volume
+  labels:
+    type: local
+spec:
+  capacity:
+    storage: 5Gi
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  hostPath:
+    path: "/mnt/todoapp/data"

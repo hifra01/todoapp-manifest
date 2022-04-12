@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todoapp-backend
+  labels:
+    app: todoapp
+    tier: backend
+spec:
+  selector:
+    matchLabels:
+      app: todoapp
+      tier: backend
+  template:
+    metadata:
+      labels:
+        app: todoapp
+        tier: backend
+    spec:
+      containers:
+      - name: todoapp-be
+        image: "{{ .Values.backend_image_name }}:{{ .Values.backend_image_version }}"
+        env:
+        - name: NODE_ENV
+          value: production
+        - name: DB_NAME
+          value: {{ .Values.mariadb_db_name }}
+        - name: DB_USER
+          value: todoapp
+        - name: DB_PASSWORD
+          value: todoapp
+        - name: DB_HOST
+          value: todoapp-db-svc
+        resources:
+          limits:
+            memory: {{ .Values.backend_resource_limit_memory }}
+            cpu: {{ .Values.backend_resource_limit_cpu }}
+        ports:
+        - containerPort: {{ .Values.backend_port }}

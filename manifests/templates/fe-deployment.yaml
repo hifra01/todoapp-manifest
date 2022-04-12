@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todoapp-frontend
+  labels:
+    app: todoapp
+    tier: frontend
+spec:
+  selector:
+    matchLabels:
+      app: todoapp
+      tier: frontend
+  template:
+    metadata:
+      labels:
+        app: todoapp
+        tier: frontend
+    spec:
+      containers:
+      - name: todoapp-fe
+        image: "{{ .Values.frontend_image_name }}:{{ .Values.frontend_image_version }}"
+        env:
+        - name: NODE_ENV
+          value: production
+        resources:
+          limits:
+            memory: {{ .Values.frontend_resource_limit_memory }}
+            cpu: {{ .Values.frontend_resource_limit_cpu }}
+        ports:
+        - containerPort: {{ .Values.frontend_port }}

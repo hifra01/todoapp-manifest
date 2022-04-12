@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: todoapp-db
+  labels:
+    app: todoapp
+    tier: database
+spec:
+  selector:
+    matchLabels:
+      app: todoapp
+      tier: database
+  serviceName: todoapp-db-svc
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: todoapp
+        tier: database
+    spec:
+      containers:
+      - name: mariadb
+        image: "{{ .Values.mariadb_image_name }}:{{ .Values.mariadb_image_version }}"
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: todoapp
+        - name: MYSQL_USER
+          value: todoapp
+        - name: MYSQL_PASSWORD
+          value: todoapp
+        - name: MYSQL_DATABASE
+          value: {{ .Values.mariadb_db_name }}
+        resources:
+          limits:
+            memory: {{ .Values.mariadb_resource_limit_memory }}
+            cpu: {{ .Values.mariadb_resource_limit_cpu }}
+        ports:
+        - containerPort: {{ .Values.mariadb_port }}
+        volumeMounts:
+        - name: todoapp-persistent-storage
+          mountPath: /var/lib/mysql/
+      volumes:
+      - name: todoapp-persistent-storage
+        persistentVolumeClaim:
+          claimName: todoapp-pv-claim
