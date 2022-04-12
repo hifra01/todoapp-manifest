@@ -15,4 +15,4 @@ mariadb_image_name: mariadb
 mariadb_image_version: '10.7'
 mariadb_db_name: todoapp
 mariadb_resource_limit_memory: "128Mi"
-mariadb_resource_limit_cpu: "500m"
+mariadb_resource_limit_cpu: "250m"
