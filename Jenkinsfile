@@ -1,3 +1,5 @@
 @Library('km-library@main') _
 
-deployHelmChart()
+deployHelmChart(
+    playbook: 'deploy-todoapp'
+)
