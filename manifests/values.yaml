@@ -1,5 +1,5 @@
 frontend_image_name: hifra/todo-app-frontend
-frontend_image_version: '1.0.0'
+frontend_image_version: '1.0.2'
 frontend_port: 8080
 frontend_resource_limit_memory: "128Mi"
 frontend_resource_limit_cpu: "250m"
