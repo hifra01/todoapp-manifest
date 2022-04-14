@@ -5,6 +5,8 @@ metadata:
   labels:
     app: todoapp
     tier: backend
+  annotations:
+    restart: {{ .Values.backend_restart }}
 spec:
   selector:
     matchLabels:
@@ -15,8 +17,6 @@ spec:
       labels:
         app: todoapp
         tier: backend
-      annotations:
-        restart: {{ .Values.backend_restart }}
     spec:
       containers:
       - name: todoapp-be
