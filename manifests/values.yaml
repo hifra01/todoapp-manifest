@@ -3,12 +3,14 @@ frontend_image_version: '1.0.2'
 frontend_port: 8080
 frontend_resource_limit_memory: "128Mi"
 frontend_resource_limit_cpu: "250m"
+frontend_restart: 0
 
 backend_image_name: hifra/todo-app-backend
 backend_image_version: '1.0.0'
 backend_port: 3000
 backend_resource_limit_memory: "128Mi"
 backend_resource_limit_cpu: "250m"
+backend_restart: 0
 
 mariadb_port: 3306
 mariadb_image_name: mariadb
@@ -16,3 +18,4 @@ mariadb_image_version: '10.7'
 mariadb_db_name: todoapp
 mariadb_resource_limit_memory: "128Mi"
 mariadb_resource_limit_cpu: "250m"
+mariadb_restart: 0
