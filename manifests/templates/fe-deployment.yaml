@@ -16,7 +16,7 @@ spec:
         app: todoapp
         tier: frontend
       annotations:
-        restartCounter: {{ .Values.frontend_restart }}
+        restartCounter: "{{ .Values.frontend_restart }}"
     spec:
       containers:
       - name: todoapp-fe
