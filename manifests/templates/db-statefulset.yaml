@@ -5,8 +5,6 @@ metadata:
   labels:
     app: todoapp
     tier: database
-  annotations:
-    restartCounter: {{ .Values.mariadb_restart }}
 spec:
   selector:
     matchLabels:
@@ -19,6 +17,8 @@ spec:
       labels:
         app: todoapp
         tier: database
+      annotations:
+        restartCounter: {{ .Values.mariadb_restart }}
     spec:
       containers:
       - name: mariadb
