@@ -6,7 +6,7 @@ metadata:
     app: todoapp
     tier: frontend
   annotations:
-    restart: {{ .Values.frontend_restart }}
+    restartCounter: {{ .Values.frontend_restart }}
 spec:
   selector:
     matchLabels:

@@ -6,7 +6,7 @@ metadata:
     app: todoapp
     tier: database
   annotations:
-    restart: {{ .Values.mariadb_restart }}
+    restartCounter: {{ .Values.mariadb_restart }}
 spec:
   selector:
     matchLabels:
